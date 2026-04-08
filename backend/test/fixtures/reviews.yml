@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  noise_rating: 1
+  crowd_rating: 1
+  outlet_rating: 1
+  location: one
+
+two:
+  content: MyText
+  noise_rating: 1
+  crowd_rating: 1
+  outlet_rating: 1
+  location: two
