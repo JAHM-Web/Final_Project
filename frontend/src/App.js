@@ -4,6 +4,16 @@ import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
+import L from 'leaflet';
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+});
+
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -19,12 +29,15 @@ function App() {
     <MapContainer
         center={[42.73, -84.48]}  // East Lansing coords
         zoom={13}
-        style={{ height: "400px", width: "600px" }}
+        style={{ height: "400px", width: "800px" }}
       >
         <TileLayer
           attribution='&copy; OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <Marker position={[42.73, -84.48]}>
+        </Marker>
+        
       </MapContainer>
 
     <h1>Posts from Rails API</h1>
