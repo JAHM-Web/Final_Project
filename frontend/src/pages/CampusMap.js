@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -27,6 +27,9 @@ export default function CampusMap() {
 
   return (
     <div style={{ textAlign: "center" }}>
+      <h1>Find Your Perfect Study Spot</h1>
+      <h2>Discover and rate the best study locations at Michigan State</h2>
+
       <MapContainer
         center={[42.73, -84.48]}
         zoom={13}
@@ -36,29 +39,20 @@ export default function CampusMap() {
           attribution='&copy; OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* <Marker position={[42.73, -84.48]} /> */}
 
         {posts.map(post => (
           post.latitude && post.longitude && (
             <Marker
               key={post.id}
               position={[post.latitude, post.longitude]}
-            />
+            >
+              <Popup>
+                <h3>{post.location_name}</h3>
+              </Popup>
+            </Marker>
           )
         ))}
       </MapContainer>
-
-      <h2>Posts</h2>
-      {posts.length === 0 ? (
-        <p>Loading...</p>
-      ) : (
-        posts.map(post => (
-          <div key={post.id}>
-            <h3>{post.location_name}</h3>
-            <p>{post.content}</p>
-          </div>
-        ))
-      )}
     </div>
   );
 }
