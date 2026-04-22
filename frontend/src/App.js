@@ -1,8 +1,10 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import CampusMap from './pages/CampusMap';
 import PopularSpots from './pages/PopularSpots';
 import PostReview from './pages/PostReview';
+
 
 
 function App() {
