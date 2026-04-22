@@ -16,11 +16,14 @@ export default function CampusMap() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('/api/posts')
-      .then(res => res.json())
-      .then(data => setPosts(data))
-      .catch(err => console.error(err));
-  }, []);
+  fetch('/api/reviews')
+    .then(res => res.json())
+    .then(data => {
+      console.log("API DATA:", data);
+      setPosts(Array.isArray(data) ? data : []);
+    })
+    .catch(err => console.error(err));
+}, []);
 
   return (
     <div style={{ textAlign: "center" }}>
@@ -33,7 +36,16 @@ export default function CampusMap() {
           attribution='&copy; OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[42.73, -84.48]} />
+        {/* <Marker position={[42.73, -84.48]} /> */}
+
+        {posts.map(post => (
+          post.latitude && post.longitude && (
+            <Marker
+              key={post.id}
+              position={[post.latitude, post.longitude]}
+            />
+          )
+        ))}
       </MapContainer>
 
       <h2>Posts</h2>
@@ -42,7 +54,8 @@ export default function CampusMap() {
       ) : (
         posts.map(post => (
           <div key={post.id}>
-            <h3>{post.title}</h3>
+            <h3>{post.location_name}</h3>
+            <p>{post.content}</p>
           </div>
         ))
       )}

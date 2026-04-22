@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_08_175028) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_22_190719) do
   create_table "reviews", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
     t.integer "crowd_rating"
-    t.integer "location_id", null: false
+    t.float "latitude"
+    t.string "location_name"
+    t.string "location_type"
+    t.float "longitude"
     t.integer "noise_rating"
     t.integer "outlet_rating"
+    t.string "poster_name"
     t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_reviews_on_location_id"
+    t.integer "wifi_rating"
   end
-
-  add_foreign_key "reviews", "locations"
 end
