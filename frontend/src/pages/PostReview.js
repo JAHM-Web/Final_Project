@@ -64,7 +64,6 @@ export default function PostReview() {
         </p>
       </div>
 
-      {/* MAP */}
       <MapContainer
         center={[42.73, -84.48]}
         zoom={15}
@@ -84,7 +83,6 @@ export default function PostReview() {
         Selected: {form.latitude}, {form.longitude}
       </p>
 
-      {/* FORM */}
       <form onSubmit={handleSubmit}>
         <input name="location_name" placeholder="Location Name" onChange={handleChange} />
         <input name="location_type" placeholder="Location Type" onChange={handleChange} />
