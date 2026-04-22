@@ -40,40 +40,38 @@ export default function PostReview() {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  console.log("SUBMIT FIRED", form);
+    console.log("SUBMIT FIRED", form);
 
-  fetch('/api/reviews', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ review: form })
-  })
-    .then(res => {
-      console.log("STATUS:", res.status);
-      return res.json();
+    fetch('/api/reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ review: form })
     })
-    .then(data => {
-      console.log("SUCCESS:", data);
-    })
-    .catch(err => {
-      console.error("ERROR:", err);
-    });
+      .then(res => res.json())
+      .then(data => console.log("SUCCESS:", data))
+      .catch(err => console.error("ERROR:", err));
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h2>Post Review</h2>
+    <div>
+      {/* HERO TITLE (NOW MATCHES REST OF APP) */}
+      <div className="hero">
+        <h1 className="hero-title">Post a Review</h1>
+        <p className="hero-subtitle">
+          Share your experience and help others find the best study spots.
+        </p>
+      </div>
 
       {/* MAP */}
       <MapContainer
         center={[42.73, -84.48]}
         zoom={15}
-        style={{ height: "300px", width: "600px", margin: "auto" }}
+        className="leaflet-container"
       >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
         <LocationPicker setCoords={setCoords} />
 
         {form.latitude && (
@@ -81,20 +79,24 @@ export default function PostReview() {
         )}
       </MapContainer>
 
-      <p>
+      {/* COORDS */}
+      <p style={{ textAlign: "center" }}>
         Selected: {form.latitude}, {form.longitude}
       </p>
 
+      {/* FORM */}
       <form onSubmit={handleSubmit}>
-        <input name="location_name" placeholder="Location Name" onChange={handleChange} /><br />
-        <input name="location_type" placeholder="Location Type" onChange={handleChange} /><br />
-        <input name="crowd_rating" type="number" placeholder="Crowd" onChange={handleChange} /><br />
-        <input name="noise_rating" type="number" placeholder="Noise" onChange={handleChange} /><br />
-        <input name="wifi_rating" type="number" placeholder="WiFi" onChange={handleChange} /><br />
-        <input name="poster_name" placeholder="Your Name" onChange={handleChange} /><br />
-        <textarea name="content" placeholder="Review" onChange={handleChange} /><br />
+        <input name="location_name" placeholder="Location Name" onChange={handleChange} />
+        <input name="location_type" placeholder="Location Type" onChange={handleChange} />
 
-        <button type="submit">Submit</button>
+        <input name="crowd_rating" type="number" placeholder="Crowd (1-3)" onChange={handleChange} />
+        <input name="noise_rating" type="number" placeholder="Noise (1-3)" onChange={handleChange} />
+        <input name="wifi_rating" type="number" placeholder="WiFi (1-3)" onChange={handleChange} />
+
+        <input name="poster_name" placeholder="Your Name" onChange={handleChange} />
+        <textarea name="content" placeholder="Write your review..." onChange={handleChange} />
+
+        <button type="submit">Submit Review</button>
       </form>
     </div>
   );
