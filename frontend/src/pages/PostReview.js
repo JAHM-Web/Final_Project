@@ -79,8 +79,11 @@ export default function PostReview() {
       </MapContainer>
 
       {/* COORDS */}
+      <h4 style={{ textAlign: "center" }}> 
+        Select a Location on the Map 
+      </h4>
       <p style={{ textAlign: "center" }}>
-        Selected: {form.latitude}, {form.longitude}
+        Selected Coordinates: {form.latitude}, {form.longitude}
       </p>
 
       <form onSubmit={handleSubmit}>
