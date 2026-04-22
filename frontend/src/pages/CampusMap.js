@@ -16,24 +16,36 @@ export default function CampusMap() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-  fetch('/api/reviews')
-    .then(res => res.json())
-    .then(data => {
-      console.log("API DATA:", data);
-      setPosts(Array.isArray(data) ? data : []);
-    })
-    .catch(err => console.error(err));
-}, []);
+    fetch('/api/reviews')
+      .then(res => res.json())
+      .then(data => {
+        console.log("API DATA:", data);
+        setPosts(Array.isArray(data) ? data : []);
+      })
+      .catch(err => console.error(err));
+  }, []);
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Find Your Perfect Study Spot</h1>
-      <h2>Discover and rate the best study locations at Michigan State</h2>
 
+      {/* HERO */}
+      <div className="hero">
+        <h1 className="hero-title">Find Your Perfect Study Spot</h1>
+        <h2 className="hero-subtitle">
+          Discover and rate the best study locations at Michigan State
+        </h2>
+      </div>
+
+      {/* MAP */}
       <MapContainer
         center={[42.73, -84.48]}
         zoom={13}
-        style={{ height: "400px", width: "800px", margin: "20px auto" }}
+        style={{
+          height: "400px",
+          width: "90%",
+          maxWidth: "900px",
+          margin: "20px auto"
+        }}
       >
         <TileLayer
           attribution='&copy; OpenStreetMap contributors'
@@ -53,6 +65,7 @@ export default function CampusMap() {
           )
         ))}
       </MapContainer>
+
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import CampusMap from './pages/CampusMap';
 import PopularSpots from './pages/PopularSpots';
@@ -23,9 +23,6 @@ function App() {
           <div className="nav-links">
             <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
               ✎ Home
-            </NavLink>
-            <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              ⌖ Campus Map
             </NavLink>
             <NavLink to="/popular" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
               ↗ Popular Spots
