@@ -14,9 +14,10 @@ L.Icon.Default.mergeOptions({
 
 export default function CampusMap() {
   const [posts, setPosts] = useState([]);
+  const API_URL = "https://final-project-og85.onrender.com";
 
   useEffect(() => {
-    fetch('/api/reviews')
+    fetch(`${API_URL}/api/reviews`)
       .then(res => res.json())
       .then(data => {
         console.log("API DATA:", data);

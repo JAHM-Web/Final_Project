@@ -39,12 +39,14 @@ export default function PostReview() {
     }));
   };
 
+  const API_URL = "https://final-project-og85.onrender.com";
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log("SUBMIT FIRED", form);
 
-    fetch('/api/reviews', {
+    fetch(`${API_URL}/api/reviews`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ review: form })

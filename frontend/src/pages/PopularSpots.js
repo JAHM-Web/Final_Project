@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 
 export default function PopularSpot() {
   const [reviews, setReviews] = useState([]);
+  const API_URL = "https://final-project-og85.onrender.com";
 
   useEffect(() => {
-    fetch('/api/reviews')
+    fetch(`${API_URL}/api/reviews`)
       .then(res => res.json())
       .then(data => {
         setReviews(Array.isArray(data) ? data : []);
