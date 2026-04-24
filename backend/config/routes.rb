@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # namespace :api do
   #   get "posts", to: "posts#index"
   # end
+  Rails.application.routes.draw do
+    get "/", to: proc { [200, {}, ["API is live"]] }
 
   namespace :api do
     resources :reviews, only: [:index, :create]
